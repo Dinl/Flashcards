@@ -1,14 +1,19 @@
+//Import external components
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+//Import Internal components
+//import reducer from './components/reducer'
+import Dashboard from './components/dashboard'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+		<View>
+			<Text>agggggggggh</Text>
+		</View>		
     );
   }
 }
