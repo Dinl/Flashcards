@@ -1,0 +1,2 @@
+export const REQUEST_DECKS = 'REQUEST_DECKS'
+export const RECEIVE_DECKS = 'RECEIVE_DECKS'

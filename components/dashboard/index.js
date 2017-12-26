@@ -1,9 +1,11 @@
 //Import external components
-import React from 'react';
-import { View, StyleSheet, Platform, TouchableOpacity, StatusBar } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Platform, TouchableOpacity, StatusBar } from 'react-native';
+import { connect } from 'react-redux'
 
 //Import utils
-import '../../utils/colors'
+import { getDecks } from './actions'
+import { white, purple } from '../../utils/colors'
 
 //Import Internal components
 import Deck from '../deck'
@@ -11,32 +13,56 @@ import DeckDetail from '../deckDetail'
 import Quiz from '../quiz'
 import QuestionDetail from '../questionDetail'
 
-/*
-const MainNavigator = StackNavigator({
-	Home: {
-		screen: Dashboard,
-	},
-	deckDetail: {
-		screen: DeckDetail,
-		navigationOptions: {
-			headerTintColor: white,
-			headerStyle: {
-				backgroundColor: purple
-			}
-		}
+
+class Dashboard extends Component {
+	
+	state= {
+		ready: false
 	}
-});
-*/
 
-
-export default class Dashboard extends React.Component {
+	componentDidMount() {
+		const { getDecks } = this.props;
+		getDecks();
+	}
+	
 	render() {
+		const { decks } = this.props;
+		debugger
 		return (
-			<Text>Dashboard</Text>
+			<View style={styles.container}>
+				{decks && Object.keys(decks).map( (key) => {
+					const deck = decks[key];
+					return (
+						<Deck 
+							key={key} 
+							deck={deck}>
+						</Deck>
+					)
+					
+				})}				
+			</View>
 		);
 	}
 }
   
 const styles = StyleSheet.create({
-	
+	container: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'flex-start'
+	}
 })
+
+function mapStateToProps ({dashboard}) {
+    return {
+		decks: dashboard.decks
+    }
+}
+
+function mapDispatchToProps (dispatch) {
+	return {
+        getDecks: data => dispatch(getDecks(data)),
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
