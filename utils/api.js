@@ -37,41 +37,37 @@ export function dummyData() {
     return dummyData;
 }
 
-export function fetchDecks() {    
-    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
+export function fetchDecks() {
+	debugger
+	return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+		.then(results => {
+			debugger
+			if(results === undefined){
+				return dummyData;
+			}
+			return JSON.parse(results)
+		})
 }
 
 export function getDeck({ key }) {
     return AsyncStorage.getItem(key);
 }
 
-export function saveDeck({ deck }) {
-    
+export function createDeck( title ) {
+	return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+		[title]: {
+			title: title,
+			questions: []
+		}
+	}))
 }
 
 export function addCard({ deckKey, card }) {
-    
+    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+		.then(results => JSON.parse(results))
+		.then(results => {
+			results[deckKey].questions.push(card)
+			AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results))
+			return results
+		})
 }
-
-/*
-export function fetchCalendarResults () {
-    return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-    .then(formatCalendarResults)
-}
-
-export function submitEntry ({ entry, key }) {
-    return AsyncStorage.mergeItem(CALENDAR_STORAGE_KEY, JSON.stringify({
-        [key]: entry
-    }))
-}
-
-export function removeEntry ({ key }) {
-    return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-        .then((results) => {
-            const data = JSON.parse(results)
-            data[key] = undefined;
-            delete data[key];
-            AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-        }) 
-}
-*/

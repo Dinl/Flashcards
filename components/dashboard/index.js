@@ -4,8 +4,11 @@ import { View, Text, StyleSheet, Platform, TouchableOpacity, StatusBar } from 'r
 import { connect } from 'react-redux'
 
 //Import utils
-import { getDecks } from './actions'
+import { receiveDecks } from './actions'
 import { white, purple } from '../../utils/colors'
+
+//Import API
+import { fetchDecks } from '../../utils/api'
 
 //Import Internal components
 import Deck from '../deck'
@@ -21,8 +24,9 @@ class Dashboard extends Component {
 	}
 
 	componentDidMount() {
-		const { getDecks } = this.props;
-		getDecks();
+		fetchDecks().then(
+			decks => this.props.receiveDecks(decks)
+		)
 	}
 	
 	render() {
@@ -53,15 +57,15 @@ const styles = StyleSheet.create({
 	}
 })
 
-function mapStateToProps ({dashboard}) {
+function mapStateToProps (decks) {
     return {
-		decks: dashboard.decks
+		decks
     }
 }
 
 function mapDispatchToProps (dispatch) {
 	return {
-        getDecks: data => dispatch(getDecks(data)),
+        receiveDecks: (decks) => dispatch(receiveDecks(decks))
 	}
 }
 

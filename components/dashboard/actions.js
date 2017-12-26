@@ -3,8 +3,6 @@ import {
     RECEIVE_DECKS
 } from '../actions'
 
-import * as API from '../../utils/api'
-
 export function requestDecks (decks) {
     return {
         type: REQUEST_DECKS,
@@ -17,15 +15,3 @@ export function receiveDecks (decks) {
         decks
     }
 }
-
-export const getDecks = PostId => dispatch => {
-    
-    dispatch(receiveDecks(API.dummyData()));
-    /*dispatch(requestDecks());
-    debugger
-	API.fetchDecks().then((decks) => {
-        debugger
-		dispatch(receiveDecks(decks));
-    });
-    */
-};

@@ -1,16 +1,40 @@
-import { combineReducers } from 'redux'
+import { ADD_DECK } from './addDeck/actions' 
+import { ADD_QUESTION } from './questionAdd/actions'  
+import { RECEIVE_DECKS } from './dashboard/actions'  
+  
+function decks(state = {}, actionData) {
+	switch(actionData.type) {
+		case ADD_DECK:
+			const newDeck = {
+				[actionData.deck]: {
+				title: actionData.deck,
+					questions: []
+				}
+			} 
+			return {
+				...state, 
+				...newDeck
+			}
+		case ADD_QUESTION:
+			const { question, answer, deck } = actionData.card
+			return {
+				...state,
+				[deck]: {
+					...state[deck],
+					questions: [...state[deck].questions, { question, answer }]
+				}
+			}
+		case RECEIVE_DECKS:
+			return {
+				...state, 
+				...actionData.decks
+			}
+		
+		
+		default: 
+			return state
+	}
+}
 
-//Import component reducers here
-import { dashboard } from './dashboard/reducer'
-import { deck } from './deck/reducer'
-import { deckDetail } from './deckDetail/reducer'
-import { questionDetail } from './questionDetail/reducer'
-import { quiz } from './quiz/reducer'
-
-export default combineReducers({
-	dashboard, 
-	deck, 
-	deckDetail, 
-	questionDetail, 
-	quiz
-});
+export default decks
+  
