@@ -1,6 +1,8 @@
-import { ADD_DECK } from './addDeck/actions' 
-import { ADD_QUESTION } from './questionAdd/actions'  
-import { RECEIVE_DECKS } from './dashboard/actions'  
+import { 
+	ADD_DECK,
+	ADD_QUESTION,
+	RECEIVE_DECKS
+} from './actions'  
   
 function decks(state = {}, actionData) {
 	switch(actionData.type) {

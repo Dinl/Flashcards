@@ -1,7 +1,10 @@
 
+//Import external components
 import React from 'react'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { Ionicons } from '@expo/vector-icons'
 
+//Import Internal components
 import Dashboard from '../dashboard'
 import DeckDetail from '../deckDetail'
 import AddDeck from '../addDeck'
@@ -29,7 +32,8 @@ export const DeckNavigator = StackNavigator({
 	DeckList: {
 		screen: Tabs,
 		navigationOptions: {
-			title: 'Decks'
+			title: 'Decks',
+			backgroundColor: 'red'
 		}
 	},
 	DeckDetail: {

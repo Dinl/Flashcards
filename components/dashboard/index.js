@@ -31,9 +31,11 @@ class Dashboard extends Component {
 	
 	render() {
 		const { decks } = this.props;
-		debugger
 		return (
 			<View style={styles.container}>
+				{decks && Object.keys(decks).length === 0 && 
+					<Text>No decks avaiable</Text>
+				}
 				{decks && Object.keys(decks).map( (key) => {
 					const deck = decks[key];
 					return (

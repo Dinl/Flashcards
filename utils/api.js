@@ -37,16 +37,13 @@ export function dummyData() {
     return dummyData;
 }
 
-export function fetchDecks() {
-	debugger
-	return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-		.then(results => {
-			debugger
-			if(results === undefined){
-				return dummyData;
-			}
-			return JSON.parse(results)
-		})
+export async function fetchDecks() {	
+	return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
+		if(!results){
+			return dummyData();
+		}
+		return JSON.parse(results)
+	});
 }
 
 export function getDeck({ key }) {
