@@ -8,32 +8,32 @@ import { white, gray, black, purple } from '../../utils/colors'
 
 class Deck extends React.Component {
 	render() {
-		const { deck } = this.props;
+		const { deck, onDeckDetails } = this.props;
 		return (
-			<View style={styles.container}>
-				<TouchableOpacity 	
-					style={styles.row}
-					onPress={() => this.props.navigation.navigate(
-						'deckDetail', 
-						{ deckId: key}
-					) }>
-
-					<Text style={styles.title}>{deck.title}</Text>
-					<Text style={styles.numberQuestions}>{deck.questions.length}</Text>
-					
-				</TouchableOpacity>
-			</View>
+			<TouchableOpacity 
+				style={styles.container}
+				onPress={() => onDeckDetails(deck) }>
+				
+				<Text style={styles.title}>{deck.title}</Text>
+				<Text style={styles.numberQuestions}>{deck.questions.length}</Text>
+				
+			</TouchableOpacity>
 		);
 	}
 }
   
 const styles = StyleSheet.create({
 	container: {
+		height: 100,
+		borderWidth: 1,
+		borderColor: '#c5c6b6',
 		flex: 1,
-		maxHeight: 100,
-		padding: 20,
-		//backgroundColor: white,
-		//borderColor: gray
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	button: {
+
 	},
 	row: {
 		flex: 1,

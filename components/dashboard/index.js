@@ -1,6 +1,13 @@
 //Import external components
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform, TouchableOpacity, StatusBar } from 'react-native';
+import { 
+	View, 
+	Text, 
+	StyleSheet, 
+	Platform, 
+	TouchableOpacity, 
+	StatusBar,
+	ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 
 //Import utils
@@ -28,34 +35,34 @@ class Dashboard extends Component {
 			decks => this.props.receiveDecks(decks)
 		)
 	}
+
+	onDeckDetails = ({title}) => {
+		this.props.navigation.navigate('DeckDetails', { name: title })
+	}
 	
 	render() {
 		const { decks } = this.props;
-		return (
-			<View style={styles.container}>
-				{decks && Object.keys(decks).length === 0 && 
-					<Text>No decks avaiable</Text>
-				}
-				{decks && Object.keys(decks).map( (key) => {
-					const deck = decks[key];
-					return (
+		if(decks && Object.keys(decks).length === 0 ){
+			return(<Text>No decks avaiable</Text>)
+		} else {
+			return(
+				<ScrollView style={styles.container}>			
+					{Object.keys(decks).map( deck => 
 						<Deck 
-							key={key} 
-							deck={deck}>
+							key={decks[deck].title} 
+							deck={decks[deck]}
+							onDeckDetails={this.onDeckDetails}>
 						</Deck>
-					)
-					
-				})}				
-			</View>
-		);
+					)}
+				</ScrollView>
+			)
+		}
 	}
 }
   
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: 'column',
-		justifyContent: 'flex-start'
 	}
 })
 
