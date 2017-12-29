@@ -59,11 +59,11 @@ export function createDeck( title ) {
 	}))
 }
 
-export function addCard({ deckKey, card }) {
+export function postQuestion(deckName, question) {
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
 		.then(results => JSON.parse(results))
 		.then(results => {
-			results[deckKey].questions.push(card)
+			results[deckName].questions.push(question)
 			AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results))
 			return results
 		})

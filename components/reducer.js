@@ -18,12 +18,12 @@ function decks(state = {}, actionData) {
 				...newDeck
 			}
 		case ADD_QUESTION:
-			const { question, answer, deck } = actionData.card
+			const { question, deckId } = actionData			
 			return {
 				...state,
-				[deck]: {
-					...state[deck],
-					questions: [...state[deck].questions, { question, answer }]
+				[deckId]: {
+					...state[deckId],
+					questions: [...state[deckId].questions, question]
 				}
 			}
 		case RECEIVE_DECKS:

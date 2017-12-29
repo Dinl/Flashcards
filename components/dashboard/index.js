@@ -36,8 +36,9 @@ class Dashboard extends Component {
 		)
 	}
 
+
 	onDeckDetails = ({title}) => {
-		this.props.navigation.navigate('DeckDetails', { name: title })
+		this.props.navigation.navigate('DeckDetail', { name: title })
 	}
 	
 	render() {
