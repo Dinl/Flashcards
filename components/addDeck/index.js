@@ -55,7 +55,7 @@ class AddDeck extends Component {
 				<View style={styles.footer}>
 					<TouchableOpacity 
 						onPress={this.submit}
-						style={styles.button}>
+						style={[styles.button, {backgroundColor: 'blue'}]}>
 						<Text style={styles.buttonText}>Add Deck</Text>
 					</TouchableOpacity>  
 				</View>
@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
 	  justifyContent: 'center'
 	},
 	header: {
-		flex: 1,
+		flex: 3,
 	},
 	content: {
-		flex: 3,
+		flex: 5,
 	},
 	footer: {
 		flex: 1,
@@ -92,6 +92,19 @@ const styles = StyleSheet.create({
 		borderColor: '#757575',
 		margin: 20,
 		fontSize: 25
+	},
+	button: {
+		flex: 1,
+		height: 60,
+		width: 150,
+		padding: 10,
+		borderRadius: 10,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	buttonText: {
+		color: 'white',
+		fontSize: 20
 	}
 
 });

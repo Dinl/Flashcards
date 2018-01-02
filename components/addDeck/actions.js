@@ -1,4 +1,7 @@
-export const ADD_DECK = 'ADD_DECK'
+import {
+    ADD_DECK
+} from '../actions'
+
 export function addDeck(deck) {
 	return {
 		type: ADD_DECK,

@@ -39,7 +39,7 @@ class DeckDetail extends React.Component {
 		const { name } = this.props.navigation.state.params;
 		const deck = this.props.decks[name];
 
-		if(Object.keys(deck).length > 0)
+		if(deck && Object.keys(deck).length > 0)
 			return (
 				<View style={styles.container}>
 					<View style={styles.header}>
