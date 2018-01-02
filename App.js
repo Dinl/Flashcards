@@ -7,19 +7,24 @@ import { Provider } from 'react-redux'
 //Import Internal components
 import { DeckNavigator } from './components/navigator'
 import reducer from './components/reducer'
+import { setNotifications } from './utils/notifications'
 
 const store = createStore(reducer);
 
 export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store} >
-        <View style={styles.container}>
-          <DeckNavigator />
-        </View>	
-      </Provider>			
-    );
-  }
+
+	componentDidMount() {
+		setNotifications()
+	}
+	render() {
+		return (
+			<Provider store={store} >
+			<View style={styles.container}>
+				<DeckNavigator />
+			</View>	
+			</Provider>			
+		);
+	}
 }
 
 const styles = StyleSheet.create({
