@@ -25,12 +25,14 @@ export function setNotifications() {
 						if(status === 'granted'){
 							Notifications.cancelAllScheduledNotificationsAsync();
 							let nextNotifications = new Date();
-							nextNotifications.setMinutes(nextNotifications.getMinutes()+1);
+							nextNotifications.setDate(nextNotifications.getDate() + 1);
+							nextNotifications.setHours(8);
+							nextNotifications.setMinutes(0);
 							Notifications.scheduleLocalNotificationAsync(
 								createNotification(),
 								{
 									time: nextNotifications,
-									repeat: 'minute'
+									repeat: 'day'
 								}
 							);
 							AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
