@@ -3,7 +3,6 @@ import { AsyncStorage } from 'react-native'
 export const FLASHCARDS_STORAGE_KEY = 'Flashcards:decks'
 
 function solveData(decks) {
-    console.log("solveData:" + decks);
     return (decks === null) ? 
         dummyData() : decks;
 }

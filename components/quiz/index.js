@@ -26,8 +26,8 @@ class Quiz extends React.Component {
 		this.setState({showAnswer: !this.state.showAnswer});
 	}
 
-	goHome = () => {
-		this.props.navigation.navigate('DeckList')
+	goDeck = () => {
+		this.props.navigation.goBack();
 	}
 
 	restart = () => {
@@ -76,9 +76,9 @@ class Quiz extends React.Component {
 					</View>
 					<View style={styles.footer}>
 						<TouchableOpacity 
-							onPress={() => this.goHome()}
+							onPress={() => this.goDeck()}
 							style={[styles.button, {backgroundColor: 'blue'}]}>
-							<Text style={styles.buttonText}>Home</Text>
+							<Text style={styles.buttonText}>Go deck!</Text>
 						</TouchableOpacity>
 						<TouchableOpacity 
 							onPress={() => this.restart()}

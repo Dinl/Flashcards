@@ -12,7 +12,13 @@ import {
 import { connect } from 'react-redux'
 
 //Import utils
-import '../../utils/colors'
+import {
+	c_buttonDeckDetail,
+	c_textButtonDeckDetail,
+	c_questionsDeckDetail,
+	c_questionList,
+	c_NameDeckDetail,
+} from '../../utils/colors'
 
 class DeckDetail extends React.Component {
 
@@ -51,7 +57,9 @@ class DeckDetail extends React.Component {
 						? <Text>No questions here</Text>
 						: <View>
 							{deck.questions.map((question, index) => 
-							<Text key={`question_${index}`}>
+							<Text 
+								style={{color: c_questionList}}
+								key={`question_${index}`}>
 								{question.question}
 							</Text>)}
 						</View>
@@ -60,12 +68,12 @@ class DeckDetail extends React.Component {
 					<View style={styles.footer}>
 						<TouchableOpacity 
 							onPress={this.addQuestion}
-							style={[styles.button, {backgroundColor: 'purple'}]}>
+							style={[styles.button, {backgroundColor: c_buttonDeckDetail}]}>
 							<Text style={styles.buttonText}>Add Question</Text>
 						</TouchableOpacity>
 						<TouchableOpacity 
 							onPress={this.startQuiz}
-							style={[styles.button, {backgroundColor: 'purple'}]}>
+							style={[styles.button, {backgroundColor: c_buttonDeckDetail}]}>
 							<Text style={styles.buttonText}>Quiz!</Text>
 						</TouchableOpacity>
 					</View>
@@ -85,10 +93,12 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	title: {
-		fontSize: 45
+		fontSize: 45,
+		color: c_NameDeckDetail
 	},
 	subtitle: {
-		fontSize: 30
+		fontSize: 30,
+		color: c_questionsDeckDetail
 	},
 	header: {
 		flex: 1,
@@ -113,7 +123,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	buttonText: {
-		color: 'white',
+		color: c_textButtonDeckDetail,
 		fontSize: 20
 	}
 })

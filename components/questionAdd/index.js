@@ -12,6 +12,10 @@ import {
 import { connect } from 'react-redux'
 import { addQuestion} from './actions'
 import { postQuestion } from '../../utils/api'
+import { 
+	c_createQuestionButton,
+	c_textCreateQuestionButton
+} from '../../utils/colors'
 
 class QuestionAdd extends Component {
 	state = {
@@ -55,7 +59,7 @@ class QuestionAdd extends Component {
 				<View style={styles.footer}>
 					<TouchableOpacity 
 						onPress={this.onAddQuestion}
-						style={[styles.button, {backgroundColor: 'purple'}]}>
+						style={[styles.button, {backgroundColor: c_createQuestionButton}]}>
 						<Text style={styles.buttonText}>Add Question</Text>
 					</TouchableOpacity>
 				</View>
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	buttonText: {
-		color: 'white',
+		color: c_textCreateQuestionButton,
 		fontSize: 20
 	}
 })
